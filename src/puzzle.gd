@@ -42,6 +42,13 @@ func rotate_pieces() -> void:
 		outer_pieces[i].rotation_degrees = -150 + 60 * i
 
 
+func color_stickers() -> void:
+	for piece in outer_pieces:
+		piece.color_stickers()
+	for piece in inner_pieces:
+		piece.color_sticker()
+
+
 func _process(_delta: float) -> void:
 	if dragging:
 		var ang := calc_mouse_angle()
@@ -50,6 +57,7 @@ func _process(_delta: float) -> void:
 
 
 func flip_right() -> void:
+	inner_pieces[0].flip_internal()
 	outer_pieces[0].flip_internal()
 	outer_pieces[1].flip_internal()
 	outer_pieces[2].flip_internal()
@@ -59,6 +67,7 @@ func flip_right() -> void:
 
 
 func flip_left() -> void:
+	inner_pieces[1].flip_internal()
 	outer_pieces[3].flip_internal()
 	outer_pieces[4].flip_internal()
 	outer_pieces[5].flip_internal()
@@ -70,17 +79,13 @@ func flip_left() -> void:
 func _on_inner_1_pressed() -> void:
 	flip_right()
 	rotate_pieces()
-	outer_pieces[0].color_stickers()
-	outer_pieces[1].color_stickers()
-	outer_pieces[2].color_stickers()
+	color_stickers()
 
 
 func _on_inner_2_pressed() -> void:
 	flip_left()
 	rotate_pieces()
-	outer_pieces[3].color_stickers()
-	outer_pieces[4].color_stickers()
-	outer_pieces[5].color_stickers()
+	color_stickers()
 
 
 func _on_shuffle_button_pressed() -> void:
@@ -94,5 +99,5 @@ func _on_shuffle_button_pressed() -> void:
 	if randi_range(0, 1) == 1:
 		flip_left()
 		flip_right()
-	outer_pieces.all(func(x): x.color_stickers())
+	color_stickers()
 	rotate_pieces()

@@ -41,12 +41,10 @@ outer_index_1 = 5
 
 [node name="InnerButton1" parent="Inside" instance=ExtResource("2_v4ufy")]
 position = Vector2(2, 0)
-inner_index = 0
 
 [node name="InnerButton2" parent="Inside" instance=ExtResource("2_v4ufy")]
 position = Vector2(-2, 0)
 rotation = 3.14159
-inner_index = 0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

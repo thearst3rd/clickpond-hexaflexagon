@@ -17,6 +17,10 @@ func _ready() -> void:
 	color_sticker()
 
 
+func flip_internal() -> void:
+	inner_index = 0 if inner_index == 1 else 1
+
+
 func color_sticker() -> void:
 	sticker.color = colors.get_inner_color(inner_index)
 
@@ -41,6 +45,4 @@ func _on_area_2d_mouse_exited() -> void:
 
 
 func _on_pressed() -> void:
-	inner_index = 0 if inner_index == 1 else 1
-	color_sticker()
 	inner_pressed.emit()
