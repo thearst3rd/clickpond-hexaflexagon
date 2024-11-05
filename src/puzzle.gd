@@ -101,3 +101,15 @@ func _on_shuffle_button_pressed() -> void:
 		flip_right()
 	color_stickers()
 	rotate_pieces()
+
+
+func _on_reset_button_pressed() -> void:
+	for i in range(6):
+		var piece = outer_pieces[i]
+		piece.inner_index = 0
+		piece.outer_index_1 = i
+		piece.outer_index_2 = (i + 1) % 6
+	for i in range(2):
+		inner_pieces[i].inner_index = 0
+	color_stickers()
+	rotate_pieces()

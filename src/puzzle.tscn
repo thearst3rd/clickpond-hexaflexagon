@@ -50,13 +50,23 @@ rotation = 3.14159
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
-[node name="ShuffleButton" type="Button" parent="GUI"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI"]
+custom_minimum_size = Vector2(80, 0)
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 71.0
-offset_bottom = 39.0
+offset_bottom = 74.0
+
+[node name="ShuffleButton" type="Button" parent="GUI/VBoxContainer"]
+layout_mode = 2
 text = "Shuffle"
+
+[node name="ResetButton" type="Button" parent="GUI/VBoxContainer"]
+layout_mode = 2
+text = "Reset
+"
 
 [connection signal="inner_pressed" from="Inside/InnerButton1" to="." method="_on_inner_1_pressed"]
 [connection signal="inner_pressed" from="Inside/InnerButton2" to="." method="_on_inner_2_pressed"]
-[connection signal="pressed" from="GUI/ShuffleButton" to="." method="_on_shuffle_button_pressed"]
+[connection signal="pressed" from="GUI/VBoxContainer/ShuffleButton" to="." method="_on_shuffle_button_pressed"]
+[connection signal="pressed" from="GUI/VBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
