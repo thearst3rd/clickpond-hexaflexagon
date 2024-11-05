@@ -1,0 +1,63 @@
+[gd_scene load_steps=3 format=3 uid="uid://opy4uiokrq4k"]
+
+[ext_resource type="Script" path="res://src/piece.gd" id="1_kngdl"]
+
+[sub_resource type="GDScript" id="GDScript_ynjsp"]
+script/source = "@tool
+extends Node
+
+
+@export_color_no_alpha var inner_color_0: Color
+@export_color_no_alpha var inner_color_1: Color
+
+@export_color_no_alpha var outer_color_0: Color
+@export_color_no_alpha var outer_color_1: Color
+@export_color_no_alpha var outer_color_2: Color
+@export_color_no_alpha var outer_color_3: Color
+@export_color_no_alpha var outer_color_4: Color
+@export_color_no_alpha var outer_color_5: Color
+
+
+func get_inner_color(index: int) -> Color:
+	return [inner_color_0, inner_color_1][index]
+
+
+func get_outer_color(index: int) -> Color:
+	return [outer_color_0, outer_color_1, outer_color_2, outer_color_3, outer_color_4, outer_color_5][index]
+"
+
+[node name="Piece" type="Node2D"]
+script = ExtResource("1_kngdl")
+
+[node name="Background" type="Polygon2D" parent="."]
+position = Vector2(0, 4)
+color = Color(0.114897, 0.114897, 0.114897, 1)
+polygon = PackedVector2Array(0, 128, 55.426, 96, 27.713, 48, -27.713, 48, -55.426, 96)
+
+[node name="InnerSticker" type="Polygon2D" parent="."]
+position = Vector2(0, 21)
+scale = Vector2(0.8, 0.8)
+polygon = PackedVector2Array(0, 128, 55.426, 96, 27.713, 48, -27.713, 48, -55.426, 96)
+
+[node name="OuterSticker1" type="Polygon2D" parent="."]
+position = Vector2(42, 141)
+rotation = -0.523599
+color = Color(1, 0, 0, 1)
+polygon = PackedVector2Array(-20, -20, 20, -20, 20, 20, -20, 20)
+
+[node name="OuterSticker2" type="Polygon2D" parent="."]
+position = Vector2(-42, 141)
+rotation = 0.523599
+color = Color(1, 0, 0, 1)
+polygon = PackedVector2Array(-20, -20, 20, -20, 20, 20, -20, 20)
+
+[node name="Colors" type="Node" parent="."]
+script = SubResource("GDScript_ynjsp")
+inner_color_0 = Color(1, 1, 1, 1)
+inner_color_1 = Color(1, 1, 0, 1)
+outer_color_0 = Color(1, 0, 0, 1)
+outer_color_1 = Color(1, 0.501961, 0, 1)
+outer_color_2 = Color(0, 1, 0, 1)
+outer_color_3 = Color(0, 1, 1, 1)
+outer_color_4 = Color(0, 0, 1, 1)
+outer_color_5 = Color(1, 0, 1, 1)

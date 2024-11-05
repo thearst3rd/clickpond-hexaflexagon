@@ -1,0 +1,64 @@
+[gd_scene load_steps=4 format=3 uid="uid://bmdg4dear3w7w"]
+
+[ext_resource type="PackedScene" uid="uid://opy4uiokrq4k" path="res://src/piece.tscn" id="1_f0mdx"]
+[ext_resource type="Script" path="res://src/puzzle.gd" id="1_rithy"]
+[ext_resource type="PackedScene" uid="uid://mfr5ea5yotg3" path="res://src/inner_button.tscn" id="2_v4ufy"]
+
+[node name="Puzzle" type="Node2D"]
+script = ExtResource("1_rithy")
+
+[node name="Outside" type="Node2D" parent="."]
+
+[node name="Piece1" parent="Outside" instance=ExtResource("1_f0mdx")]
+rotation = 3.66519
+outer_index_2 = 1
+
+[node name="Piece2" parent="Outside" instance=ExtResource("1_f0mdx")]
+rotation = 4.71239
+outer_index_1 = 1
+outer_index_2 = 2
+
+[node name="Piece3" parent="Outside" instance=ExtResource("1_f0mdx")]
+rotation = 5.75959
+outer_index_1 = 2
+outer_index_2 = 3
+
+[node name="Piece4" parent="Outside" instance=ExtResource("1_f0mdx")]
+rotation = 0.523599
+outer_index_1 = 3
+outer_index_2 = 4
+
+[node name="Piece5" parent="Outside" instance=ExtResource("1_f0mdx")]
+rotation = 1.5708
+outer_index_1 = 4
+outer_index_2 = 5
+
+[node name="Piece6" parent="Outside" instance=ExtResource("1_f0mdx")]
+rotation = 2.61799
+outer_index_1 = 5
+
+[node name="Inside" type="Node2D" parent="."]
+
+[node name="InnerButton1" parent="Inside" instance=ExtResource("2_v4ufy")]
+position = Vector2(2, 0)
+inner_index = 0
+
+[node name="InnerButton2" parent="Inside" instance=ExtResource("2_v4ufy")]
+position = Vector2(-2, 0)
+rotation = 3.14159
+inner_index = 0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="ShuffleButton" type="Button" parent="GUI"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 71.0
+offset_bottom = 39.0
+text = "Shuffle"
+
+[connection signal="inner_pressed" from="Inside/InnerButton1" to="." method="_on_inner_1_pressed"]
+[connection signal="inner_pressed" from="Inside/InnerButton2" to="." method="_on_inner_2_pressed"]
+[connection signal="pressed" from="GUI/ShuffleButton" to="." method="_on_shuffle_button_pressed"]

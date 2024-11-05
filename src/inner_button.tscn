@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://mfr5ea5yotg3"]
+
+[ext_resource type="Script" path="res://src/inner_button.gd" id="1_4r3ru"]
+
+[sub_resource type="GDScript" id="GDScript_78m3j"]
+script/source = "@tool
+extends Node
+
+
+@export_color_no_alpha var inner_color_0: Color
+@export_color_no_alpha var inner_color_1: Color
+
+
+func get_inner_color(index: int) -> Color:
+	return [inner_color_0, inner_color_1][index]
+"
+
+[node name="InnerButton" type="Node2D"]
+script = ExtResource("1_4r3ru")
+
+[node name="Background" type="Polygon2D" parent="."]
+color = Color(0.113725, 0.113725, 0.113725, 1)
+polygon = PackedVector2Array(0, -52, 45.033, -26, 45.033, 26, 0, 52)
+
+[node name="Sticker" type="Polygon2D" parent="."]
+position = Vector2(7, 0)
+scale = Vector2(0.7, 0.75)
+polygon = PackedVector2Array(0, -52, 45.033, -26, 45.033, 26, 0, 52)
+
+[node name="Highlight" type="Polygon2D" parent="."]
+visible = false
+color = Color(0, 1, 0, 0.392157)
+polygon = PackedVector2Array(0, -52, 45.033, -26, 45.033, 26, 0, 52)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(0, -52, 45.033, -26, 45.033, 26, 0, 52)
+
+[node name="Colors" type="Node" parent="."]
+script = SubResource("GDScript_78m3j")
+inner_color_0 = Color(1, 1, 1, 1)
+inner_color_1 = Color(1, 1, 0, 1)
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
