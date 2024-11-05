@@ -41,7 +41,3 @@ polygon = PackedVector2Array(0, -52, 45.033, -26, 45.033, 26, 0, 52)
 script = SubResource("GDScript_78m3j")
 inner_color_0 = Color(1, 1, 1, 1)
 inner_color_1 = Color(1, 1, 0, 1)
-
-[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
-[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
-[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
